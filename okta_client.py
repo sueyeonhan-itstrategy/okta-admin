@@ -68,6 +68,15 @@ class OktaClient:
         if res.status_code != 204:
             res.raise_for_status()
 
+    def add_user_to_group(self, group_id: str, user_id: str) -> None:
+        res = requests.put(
+            f"{self.base}/groups/{group_id}/users/{user_id}",
+            headers=self.headers,
+            timeout=10,
+        )
+        if res.status_code != 204:
+            res.raise_for_status()
+
     # ── 앱 할당 현황 조회 ─────────────────────────────────────────────────────
 
     def get_app_users(self, app_id: str) -> list[dict]:

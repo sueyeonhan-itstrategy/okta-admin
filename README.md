@@ -30,6 +30,9 @@ python remove_from_group.py --remove-from "App-A" --keep-in "App-B" [--apply]
 
 # 구글 어드민에서 export한 CSV 기준으로 옥타 권한(그룹) 조회
 python check_us_subsidiary_okta.py us_users.csv
+
+# 이메일 목록을 한 그룹으로 이동 (대상 그룹 추가 + 지정 그룹들에서 제거, 기본 dry-run, --apply로 실제 실행)
+python migrate_group.py --emails-file emails.txt --add-to "Group-A" --remove-from "Group-B" "Group-C" [--apply]
 ```
 
 `okta_client.py`의 `OktaClient`를 다른 스크립트에서 import해서 재사용할 수 있습니다.
@@ -42,4 +45,5 @@ python check_us_subsidiary_okta.py us_users.csv
 순서로 옥타에서 찾아 매칭하고, 매칭된 계정의 그룹(권한) 목록을 출력합니다.
 
 CSV는 "Email Address" 또는 "primaryEmail" 컬럼이 있으면 자동으로 인식합니다.
-CSV 파일 자체는 `.gitignore`에 포함되어 커밋되지 않습니다.
+CSV 파일과 `*_emails.txt` 형태의 이메일 목록 파일은 실제 인원 정보가 담겨 있어
+`.gitignore`에 포함되어 커밋되지 않습니다.
