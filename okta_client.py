@@ -103,3 +103,6 @@ class OktaClient:
             return None
         res.raise_for_status()
         return res.json()
+
+    def get_user_groups(self, user_id: str) -> list[dict]:
+        return self._get_paginated(f"{self.base}/users/{user_id}/groups")
