@@ -44,7 +44,7 @@ class OktaClient:
         )
         res.raise_for_status()
         for group in res.json():
-            if group["profile"]["name"] == group_name:
+            if group["profile"]["name"].lower() == group_name.lower():
                 return group
         return None
 
