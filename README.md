@@ -21,6 +21,9 @@ python check_data.py app "Slack"
 
 # 사용자 단건 조회
 python check_data.py user someone@company.com
+
+# 두 그룹에 동시에 소속된 사용자 조회
+python group_intersection.py "App-Slack" "Dept-Engineering"
 ```
 
 `okta_client.py`의 `OktaClient`를 다른 스크립트에서 import해서 재사용할 수 있습니다.
