@@ -29,7 +29,8 @@ def main():
 
     print(f"'{group_a}' ∩ '{group_b}' 멤버 수: {len(common)}")
     for m in common:
-        print(f"- {m['profile']['login']} ({m['status']})")
+        last_name = m["profile"].get("lastName", "")
+        print(f"- {m['profile']['login']} / {last_name} ({m['status']})")
 
 
 if __name__ == "__main__":

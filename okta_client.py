@@ -59,6 +59,15 @@ class OktaClient:
             raise ValueError(f"그룹을 찾을 수 없습니다: {group_name}")
         return self.get_group_members(group["id"])
 
+    def remove_user_from_group(self, group_id: str, user_id: str) -> None:
+        res = requests.delete(
+            f"{self.base}/groups/{group_id}/users/{user_id}",
+            headers=self.headers,
+            timeout=10,
+        )
+        if res.status_code != 204:
+            res.raise_for_status()
+
     # ── 앱 할당 현황 조회 ─────────────────────────────────────────────────────
 
     def get_app_users(self, app_id: str) -> list[dict]:
